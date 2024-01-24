@@ -19,7 +19,7 @@ export class CoffeesController {
   findAll(@Query() paginationQuery) {
     const { limit, offset } = paginationQuery;
     console.log(`Limit: ${limit}, Offset: ${offset}`);
-    return this.coffeesService.findAll();
+    return this.coffeesService.findAll() || [];
   }
   @Get(':id')
   findOne(@Param('id') id: string) {
