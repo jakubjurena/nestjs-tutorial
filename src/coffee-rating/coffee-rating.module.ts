@@ -9,8 +9,10 @@ import { DatabaseModule } from 'src/database/database.module';
     DatabaseModule.register({
       type: 'postgres',
       host: 'localhost',
-      username: process.env.DATABASE_USER,
-      password: process.env.DATABASE_PASSWORD,
+      // username: process.env.DATABASE_USER,
+      // password: process.env.DATABASE_PASSWORD,
+      username: 'postgres',
+      password: 'postgres',
     }),
   ],
   providers: [CoffeeRatingService],
