@@ -11,15 +11,14 @@ import {
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
+import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto/pagination-query.dto';
 
 @Controller('coffees')
 export class CoffeesController {
   constructor(private readonly coffeesService: CoffeesService) {}
   @Get()
-  findAll(@Query() paginationQuery) {
-    const { limit, offset } = paginationQuery;
-    console.log(`Limit: ${limit}, Offset: ${offset}`);
-    return this.coffeesService.findAll() || [];
+  findAll(@Query() paginationQuery: PaginationQueryDto) {
+    return this.coffeesService.findAll(paginationQuery) || [];
   }
   @Get(':id')
   findOne(@Param('id') id: string) {
@@ -39,5 +38,10 @@ export class CoffeesController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.coffeesService.remove(id);
+  }
+
+  @Post('recommend')
+  recommend(@Body('id') id: string) {
+    return this.coffeesService.recommend(id);
   }
 }
