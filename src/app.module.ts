@@ -27,6 +27,7 @@ import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
       validationSchema: Joi.object({
         DATABASE_HOST: Joi.required(),
         DATABASE_PORT: Joi.number().default(5432),
+        NEST_APP_PORT: Joi.number().required(),
       }),
     }),
     CoffeesModule,
